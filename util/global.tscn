@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dajqocn606nnj"]
+
+[ext_resource type="Script" uid="uid://csxyaplg7x88w" path="res://util/global.gd" id="1_fl6xk"]
+
+[node name="Global" type="Node"]
+script = ExtResource("1_fl6xk")
+
+[node name="Sfx" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Bgm" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+autoplay = true
+bus = &"Bgm"
+
+[connection signal="finished" from="Bgm" to="." method="_on_bgm_finished"]
