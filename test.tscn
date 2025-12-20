@@ -53,11 +53,9 @@ position = Vector2(1320, 612)
 [node name="Laser" parent="StaticBody2D" instance=ExtResource("4_ykrsh")]
 position = Vector2(125, 631)
 
-[node name="Base" parent="StaticBody2D" instance=ExtResource("5_g14j6")]
-position = Vector2(1788, 788)
-
-[node name="Graphic" parent="StaticBody2D/Base" index="0"]
-scale = Vector2(-1, 1)
+[node name="Laser2" parent="StaticBody2D" instance=ExtResource("4_ykrsh")]
+position = Vector2(1789, 665)
+dir = 1
 
 [node name="EnemyDragon" parent="StaticBody2D" instance=ExtResource("6_vbegm")]
 position = Vector2(694, 2)
@@ -65,7 +63,12 @@ position = Vector2(694, 2)
 [node name="Octopus" parent="StaticBody2D" instance=ExtResource("7_ehkex")]
 position = Vector2(1252, 1082)
 
+[node name="Base" parent="StaticBody2D" instance=ExtResource("5_g14j6")]
+position = Vector2(126, 820)
+
+[node name="Base2" parent="StaticBody2D" instance=ExtResource("5_g14j6")]
+position = Vector2(1791, 525)
+dir = 1
+
 [node name="Player" parent="." instance=ExtResource("2_8uh7m")]
 position = Vector2(473, 243)
-
-[editable path="StaticBody2D/Base"]

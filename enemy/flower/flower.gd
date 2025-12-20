@@ -1,6 +1,11 @@
 extends CharacterBody2D
 const LASER = preload("uid://bbr5i1oprwca")
+enum Direction{RIGHT,LEFT}
+@export var dir:Direction=Direction.RIGHT
 
+func _ready() -> void:
+	if dir==Direction.LEFT:
+		%Graphic.scale.x=-1
 
 func _physics_process(delta: float) -> void:
 	if %AnimationPlayer.current_animation=="pre":pass
