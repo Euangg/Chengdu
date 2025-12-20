@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://c577cqx8n0emm"]
+
+[ext_resource type="Script" uid="uid://dg7cxjs7xr2ld" path="res://player/laser.gd" id="1_2udbj"]
+[ext_resource type="Texture2D" uid="uid://bdi8gqehajy3v" path="res://player/2.png" id="1_p4hsv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4hsv"]
+size = Vector2(1978, 86)
+
+[sub_resource type="Animation" id="Animation_p4hsv"]
+resource_name = "idle"
+length = 0.16
+loop_mode = 1
+step = 0.08
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07692308),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 2.3920221), Vector2(0.215, 2.392)]
+}
+
+[sub_resource type="Animation" id="Animation_2udbj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 2.3920221)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2udbj"]
+_data = {
+&"RESET": SubResource("Animation_2udbj"),
+&"idle": SubResource("Animation_p4hsv")
+}
+
+[node name="Laser" type="Node2D"]
+visible = false
+script = ExtResource("1_2udbj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(983.1211, -2.5008207e-05)
+rotation = -1.5707964
+scale = Vector2(1, 2.3920221)
+texture = ExtResource("1_p4hsv")
+region_enabled = true
+region_rect = Rect2(478, 1338, 108, 822)
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(979, 0)
+shape = SubResource("RectangleShape2D_p4hsv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_2udbj")
+}
+autoplay = "idle"

@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbr5i1oprwca"]
+
+[ext_resource type="Script" uid="uid://boq2f1fkxim8e" path="res://enemy/flower/laser.gd" id="1_5bcvu"]
+[ext_resource type="Texture2D" uid="uid://bltj7xfnsg5m5" path="res://enemy/dragon/Frame 11.png" id="1_tflyj"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_tflyj"]
+b = Vector2(1900, 0)
+
+[sub_resource type="Animation" id="Animation_5bcvu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame11:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2637962, 2.3720894)]
+}
+
+[sub_resource type="Animation" id="Animation_tflyj"]
+resource_name = "idle"
+length = 0.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame11:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.2637962, 2.3720894), Vector2(0.051375777, 2.3720894)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vydi4"]
+_data = {
+&"RESET": SubResource("Animation_5bcvu"),
+&"idle": SubResource("Animation_tflyj")
+}
+
+[node name="Laser" type="Node2D"]
+script = ExtResource("1_5bcvu")
+
+[node name="Frame11" type="Sprite2D" parent="."]
+position = Vector2(975, 0)
+rotation = -1.5707964
+scale = Vector2(0.2637962, 2.3720894)
+texture = ExtResource("1_tflyj")
+region_enabled = true
+region_rect = Rect2(478, 1338, 108, 822)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("SegmentShape2D_tflyj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vydi4")
+}
+autoplay = "idle"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1jgvho86hv4w"]
+
+[ext_resource type="Script" uid="uid://e64mg2fyhlid" path="res://player/effect_hit.gd" id="1_p0hu1"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b46or"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 150.0
+initial_velocity_max = 220.0
+gravity = Vector3(0, 0, 0)
+damping_max = 15.000001
+scale_max = 4.0
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.14999998
+
+[node name="EffectHit" type="Node2D"]
+script = ExtResource("1_p0hu1")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 100
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+randomness = 0.11
+process_material = SubResource("ParticleProcessMaterial_b46or")
+
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]

@@ -1,0 +1,200 @@
+[gd_scene load_steps=14 format=3 uid="uid://ba6akroco1xnu"]
+
+[ext_resource type="Script" uid="uid://67ncgsmckdas" path="res://player/player.gd" id="1_ipwso"]
+[ext_resource type="Texture2D" uid="uid://ck2bnyqjwcu6c" path="res://player/ani.png" id="2_et067"]
+[ext_resource type="Texture2D" uid="uid://v0gjibp24akh" path="res://player/1x1.png" id="2_lmqe0"]
+[ext_resource type="PackedScene" uid="uid://c577cqx8n0emm" path="res://player/laser.tscn" id="4_yw30f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmqe0"]
+size = Vector2(52, 84.5)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lmqe0"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 6.99
+spread = 31.098
+flatness = 0.418
+initial_velocity_min = 26.43
+initial_velocity_max = 788.07
+gravity = Vector3(0, 0, 0)
+damping_min = 100.00001
+damping_max = 100.00001
+scale_max = 5.0
+hue_variation_min = -0.62
+hue_variation_max = -0.17000002
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_et067"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 6.99
+spread = 9.73
+initial_velocity_min = 176.64
+initial_velocity_max = 771.61
+gravity = Vector3(5, 0, 0)
+scale_max = 2.0
+
+[sub_resource type="Animation" id="Animation_44w7n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ani:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_et067"]
+resource_name = "fall"
+length = 0.3
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ani:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_5wbnf"]
+resource_name = "idle"
+length = 0.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ani:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_xige6"]
+resource_name = "rise"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ani:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5wbnf"]
+_data = {
+&"RESET": SubResource("Animation_44w7n"),
+&"fall": SubResource("Animation_et067"),
+&"idle": SubResource("Animation_5wbnf"),
+&"rise": SubResource("Animation_xige6")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_44w7n"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(20, 2, 1)
+angle_min = 1.0728835e-05
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 43.98
+initial_velocity_max = 45.0
+gravity = Vector3(0, 98, 0)
+scale_max = 1.8
+hue_variation_min = -1.0
+hue_variation_max = -0.63
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_ipwso")
+
+[node name="Ani" type="Sprite2D" parent="."]
+position = Vector2(-6, -12)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_et067")
+hframes = 4
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.25)
+shape = SubResource("RectangleShape2D_lmqe0")
+
+[node name="Hand" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="Node2D" parent="Hand"]
+position = Vector2(58, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hand/CollisionShape2D"]
+position = Vector2(-22, -4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_et067")
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2(981, 227, 46, 32)
+
+[node name="Particles1" type="GPUParticles2D" parent="Hand/CollisionShape2D"]
+unique_name_in_owner = true
+emitting = false
+amount = 300
+texture = ExtResource("2_lmqe0")
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_lmqe0")
+
+[node name="Particles2" type="GPUParticles2D" parent="Hand/CollisionShape2D"]
+unique_name_in_owner = true
+emitting = false
+amount = 200
+texture = ExtResource("2_lmqe0")
+process_material = SubResource("ParticleProcessMaterial_et067")
+
+[node name="Laser" parent="Hand" instance=ExtResource("4_yw30f")]
+unique_name_in_owner = true
+position = Vector2(58, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_5wbnf")
+}
+autoplay = "idle"
+
+[node name="ParticlesLand" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 45)
+emitting = false
+amount = 80
+texture = ExtResource("2_lmqe0")
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_44w7n")
+
+[node name="TimerInvincible" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="TimerInvincible" to="." method="_on_timer_invincible_timeout"]

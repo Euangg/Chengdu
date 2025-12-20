@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=4 uid="uid://rwthc1455xnm"]
+
+[ext_resource type="Texture2D" uid="uid://dfqbhjgt1wavf" path="res://level/035118ceb6f490305f477c4f5d29d006.jpg" id="1_42frl"]
+[ext_resource type="PackedScene" uid="uid://bv6e5qmfwyftd" path="res://level/building4.tscn" id="2_42frl"]
+[ext_resource type="TileSet" uid="uid://dxfkldu4btlbs" path="res://level/tile.tres" id="3_bu4tk"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bu4tk"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_42frl"]
+
+[node name="Level01" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1, 0.08)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+modulate = Color(1, 0.9607843, 1, 1)
+scale = Vector2(0.749, 0.749)
+texture = ExtResource("1_42frl")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="Parallax2D/Sprite2D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.88235295, 0.6784314, 0.7372549, 0.34509805)
+
+[node name="Building" parent="." instance=ExtResource("2_42frl")]
+
+[node name="Building2" parent="." instance=ExtResource("2_42frl")]
+position = Vector2(0, 18159)
+
+[node name="Building3" parent="." instance=ExtResource("2_42frl")]
+position = Vector2(0, 36318)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(928, 0)
+shape = SubResource("WorldBoundaryShape2D_bu4tk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1654, 53076)
+shape = SubResource("WorldBoundaryShape2D_42frl")
+
+[node name="CameraRange" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="CameraRange"]
+
+[node name="Marker2D2" type="Marker2D" parent="CameraRange"]
+position = Vector2(1920, 53079)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAJAAcAAAAAAAAAAAAKAAcAAAABAAAAAAALAAcAAAACAAAAAAAMAAcAAAADAAAAAAANAAcAAAAEAAAAAAAOAAoAAAAAAAAAAAAPAAoAAAABAAAAAAAQAAoAAAACAAAAAAARAAoAAAADAAAAAAASAAoAAAAEAAAAAAALABAAAAAAAAAAAAAMABAAAAABAAAAAAANABAAAAACAAAAAAAOABAAAAADAAAAAAAPABAAAAAEAAAAAAA=")
+tile_set = ExtResource("3_bu4tk")
