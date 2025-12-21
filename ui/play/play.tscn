@@ -47,7 +47,7 @@ unique_name_in_owner = true
 
 [node name="Player" parent="NodePlayers" instance=ExtResource("3_tnm53")]
 unique_name_in_owner = true
-position = Vector2(665, 402)
+position = Vector2(744, 228)
 
 [node name="NodeElements" type="Node" parent="."]
 unique_name_in_owner = true
