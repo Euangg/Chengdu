@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccyosgbfmvs25"]
+
+[ext_resource type="Texture2D" uid="uid://c07d2je65qdwn" path="res://ui/play/ui.png" id="1_7v6a1"]
+[ext_resource type="Script" uid="uid://btsy3qhmx6l7l" path="res://ui/play/weapon_pic.gd" id="1_gabxh"]
+
+[sub_resource type="Animation" id="Animation_frto3"]
+resource_name = "shotgun"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(772, 561, 144, 150)]
+}
+
+[sub_resource type="Animation" id="Animation_lxytc"]
+resource_name = "laser"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(772, 729, 144, 150)]
+}
+
+[sub_resource type="Animation" id="Animation_bshjj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(772, 561, 144, 150)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qfo4y"]
+_data = {
+&"RESET": SubResource("Animation_bshjj"),
+&"laser": SubResource("Animation_lxytc"),
+&"shotgun": SubResource("Animation_frto3")
+}
+
+[node name="WeaponPic" type="Node2D"]
+script = ExtResource("1_gabxh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7v6a1")
+region_enabled = true
+region_rect = Rect2(772, 561, 144, 150)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qfo4y")
+}

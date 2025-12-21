@@ -1,8 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpqc7t7waexaq"]
+[gd_scene load_steps=11 format=3 uid="uid://dpqc7t7waexaq"]
 
 [ext_resource type="Script" uid="uid://c8hcdb4kofdyi" path="res://ui/play/play.gd" id="1_maavd"]
 [ext_resource type="PackedScene" uid="uid://rwthc1455xnm" path="res://level/level_01.tscn" id="2_xyo1v"]
 [ext_resource type="PackedScene" uid="uid://ba6akroco1xnu" path="res://player/player.tscn" id="3_tnm53"]
+[ext_resource type="Texture2D" uid="uid://c07d2je65qdwn" path="res://ui/play/ui.png" id="4_tnm53"]
+[ext_resource type="PackedScene" uid="uid://ccyosgbfmvs25" path="res://ui/play/weapon_pic_1.tscn" id="5_5cp7b"]
+[ext_resource type="PackedScene" uid="uid://c7untkwehq6cq" path="res://ui/play/weapon_pic_2.tscn" id="6_q2qwd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tnm53"]
+size = Vector2(2333, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnm53"]
+atlas = ExtResource("4_tnm53")
+region = Rect2(825, 382, 132, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cp7b"]
+atlas = ExtResource("4_tnm53")
+region = Rect2(979, 201, 133, 119)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2qwd"]
+size = Vector2(1831, 472)
 
 [node name="Play" type="Control"]
 layout_mode = 3
@@ -12,12 +29,85 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_maavd")
+metadata/_edit_horizontal_guides_ = [216.0]
 
 [node name="Level01" parent="." instance=ExtResource("2_xyo1v")]
 unique_name_in_owner = true
 
-[node name="Player" parent="." instance=ExtResource("3_tnm53")]
-position = Vector2(769, 223)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Marker2D" type="Marker2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(924, 401)
+
+[node name="MarkerBoss1" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(961, 5891)
+
+[node name="NodePlayers" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Player" parent="NodePlayers" instance=ExtResource("3_tnm53")]
+unique_name_in_owner = true
+position = Vector2(665, 402)
+
+[node name="NodeElements" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(960, 543)
+
+[node name="Area2D" type="Area2D" parent="Camera2D"]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Area2D"]
+position = Vector2(2.5, -569)
+shape = SubResource("RectangleShape2D_tnm53")
+
+[node name="Area2D2" type="Area2D" parent="Camera2D"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Camera2D/Area2D2"]
+position = Vector2(2.5, 568)
+shape = SubResource("RectangleShape2D_tnm53")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="NodeHeart" type="Node" parent="CanvasLayer"]
+unique_name_in_owner = true
+
+[node name="NodeHeart2" type="Node" parent="CanvasLayer"]
+unique_name_in_owner = true
+
+[node name="HeadPic" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(218, 64)
+texture = SubResource("AtlasTexture_tnm53")
+
+[node name="HeadPic2" type="Sprite2D" parent="CanvasLayer"]
+unique_name_in_owner = true
+position = Vector2(1699, 68)
+texture = SubResource("AtlasTexture_5cp7b")
+
+[node name="WeaponPic" parent="CanvasLayer" instance=ExtResource("5_5cp7b")]
+unique_name_in_owner = true
+position = Vector2(120, 888)
+
+[node name="WeaponPic2" parent="CanvasLayer" instance=ExtResource("6_q2qwd")]
+unique_name_in_owner = true
+position = Vector2(1801, 903)
+
+[node name="AreaPass" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPass"]
+position = Vector2(960, 231)
+shape = SubResource("RectangleShape2D_q2qwd")
+
+[connection signal="body_entered" from="Camera2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Camera2D/Area2D2" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="body_entered" from="AreaPass" to="." method="_on_area_pass_body_entered"]

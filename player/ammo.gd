@@ -14,6 +14,5 @@ func _on_area_2d_body_entered(e: Enemy) -> void:
 	
 	var effect=EFFECT_HIT.instantiate()
 	effect.position=position
-	effect
 	add_sibling(effect)
 	queue_free()

@@ -1,19 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://ifdi1witouk3"]
+[gd_scene load_steps=7 format=3 uid="uid://ifdi1witouk3"]
 
 [ext_resource type="Script" uid="uid://diiqv7veq4mm7" path="res://test.gd" id="1_37kl0"]
 [ext_resource type="PackedScene" uid="uid://fauhy0e6fj8g" path="res://enemy/pillworm/enemy_pillworm.tscn" id="2_6uqi0"]
 [ext_resource type="PackedScene" uid="uid://ba6akroco1xnu" path="res://player/player.tscn" id="2_8uh7m"]
-[ext_resource type="PackedScene" uid="uid://d2cfua5tre3cm" path="res://enemy/bat/fly.tscn" id="3_ppyta"]
-[ext_resource type="PackedScene" uid="uid://bvp7pgcoe1lxs" path="res://enemy/flower/flower.tscn" id="4_ykrsh"]
-[ext_resource type="PackedScene" uid="uid://hxdj1ep5p5s1" path="res://enemy/flower/base.tscn" id="5_g14j6"]
-[ext_resource type="PackedScene" uid="uid://7x2r2f065fvs" path="res://enemy/dragon/enemy_dragon.tscn" id="6_vbegm"]
-[ext_resource type="PackedScene" uid="uid://dbi7lwvxylslm" path="res://enemy/octopus/octopus.tscn" id="7_ehkex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_37kl0"]
 size = Vector2(2387, 144)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uqi0"]
-size = Vector2(570.25, 36)
+size = Vector2(141.125, 269)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8uh7m"]
 size = Vector2(122, 1155)
@@ -29,7 +24,7 @@ position = Vector2(1152, 1010)
 shape = SubResource("RectangleShape2D_37kl0")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1361, 498)
+position = Vector2(1443, 861)
 shape = SubResource("RectangleShape2D_6uqi0")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
@@ -45,30 +40,7 @@ position = Vector2(977, 80)
 shape = SubResource("RectangleShape2D_37kl0")
 
 [node name="EnemyPillworm" parent="StaticBody2D" instance=ExtResource("2_6uqi0")]
-position = Vector2(1321, 479)
-
-[node name="Fly" parent="StaticBody2D" instance=ExtResource("3_ppyta")]
-position = Vector2(1320, 612)
-
-[node name="Laser" parent="StaticBody2D" instance=ExtResource("4_ykrsh")]
-position = Vector2(125, 631)
-
-[node name="Laser2" parent="StaticBody2D" instance=ExtResource("4_ykrsh")]
-position = Vector2(1789, 665)
-dir = 1
-
-[node name="EnemyDragon" parent="StaticBody2D" instance=ExtResource("6_vbegm")]
-position = Vector2(694, 2)
-
-[node name="Octopus" parent="StaticBody2D" instance=ExtResource("7_ehkex")]
-position = Vector2(1252, 1082)
-
-[node name="Base" parent="StaticBody2D" instance=ExtResource("5_g14j6")]
-position = Vector2(126, 820)
-
-[node name="Base2" parent="StaticBody2D" instance=ExtResource("5_g14j6")]
-position = Vector2(1791, 525)
-dir = 1
+position = Vector2(1655, 902)
 
 [node name="Player" parent="." instance=ExtResource("2_8uh7m")]
 position = Vector2(473, 243)

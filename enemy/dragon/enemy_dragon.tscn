@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://7x2r2f065fvs"]
+[gd_scene load_steps=13 format=3 uid="uid://7x2r2f065fvs"]
 
 [ext_resource type="Texture2D" uid="uid://bltj7xfnsg5m5" path="res://enemy/dragon/Frame 11.png" id="1_bma8j"]
 [ext_resource type="Script" uid="uid://c8nv0cyupgrsv" path="res://enemy/dragon/enemy_dragon.gd" id="1_bph73"]
+[ext_resource type="Texture2D" uid="uid://dglktj1qokd3j" path="res://enemy/dragon/light.png" id="3_qiusm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bma8j"]
 size = Vector2(1091, 169)
@@ -71,6 +72,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_err5b"]
 resource_name = "pre_attack"
+length = 1.5
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -84,6 +86,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [2]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"sound"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qiusm"]
 _data = {
@@ -93,8 +109,46 @@ _data = {
 &"pre_attack": SubResource("Animation_err5b")
 }
 
+[sub_resource type="Animation" id="Animation_p3l08"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ovit4"]
+resource_name = "idle"
+length = 0.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gd8ux"]
+_data = {
+&"RESET": SubResource("Animation_p3l08"),
+&"idle": SubResource("Animation_ovit4")
+}
+
 [node name="EnemyDragon" type="CharacterBody2D"]
-modulate = Color(0.9098039, 0.7372549, 0.85490197, 1)
 script = ExtResource("1_bph73")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -105,11 +159,21 @@ collision_mask = 2
 position = Vector2(-2.5, 79.5)
 shape = SubResource("RectangleShape2D_bma8j")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2.5, 1119)
+shape = SubResource("RectangleShape2D_bma8j")
+
 [node name="Frame11" type="Sprite2D" parent="."]
+modulate = Color(0.5090417, 0.3651719, 0.54357046, 1)
 position = Vector2(0, 540)
 texture = ExtResource("1_bma8j")
 hframes = 4
 vframes = 2
+
+[node name="Light" type="Sprite2D" parent="."]
+position = Vector2(0, 540)
+texture = ExtResource("3_qiusm")
+hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -127,6 +191,12 @@ unique_name_in_owner = true
 wait_time = 5.0
 one_shot = true
 autostart = true
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gd8ux")
+}
+autoplay = "idle"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

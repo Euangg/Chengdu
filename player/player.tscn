@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://ba6akroco1xnu"]
+[gd_scene load_steps=15 format=3 uid="uid://ba6akroco1xnu"]
 
-[ext_resource type="Script" uid="uid://67ncgsmckdas" path="res://player/player.gd" id="1_ipwso"]
+[ext_resource type="Script" uid="uid://67ncgsmckdas" path="res://player/player_1.gd" id="1_ipwso"]
 [ext_resource type="Texture2D" uid="uid://ck2bnyqjwcu6c" path="res://player/ani.png" id="2_et067"]
 [ext_resource type="Texture2D" uid="uid://v0gjibp24akh" path="res://player/1x1.png" id="2_lmqe0"]
 [ext_resource type="PackedScene" uid="uid://c577cqx8n0emm" path="res://player/laser.tscn" id="4_yw30f"]
+[ext_resource type="AudioStream" uid="uid://b5a83yy5gdp5l" path="res://sound/sfx/sfx_laser_player.mp3" id="5_qjkh3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lmqe0"]
 size = Vector2(52, 84.5)
@@ -126,6 +127,7 @@ hue_variation_max = -0.63
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 17
 script = ExtResource("1_ipwso")
 
 [node name="Ani" type="Sprite2D" parent="."]
@@ -197,4 +199,10 @@ process_material = SubResource("ParticleProcessMaterial_44w7n")
 unique_name_in_owner = true
 one_shot = true
 
+[node name="SfxLaser" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_qjkh3")
+bus = &"Sfx"
+
 [connection signal="timeout" from="TimerInvincible" to="." method="_on_timer_invincible_timeout"]
+[connection signal="finished" from="SfxLaser" to="." method="_on_sfx_laser_finished"]

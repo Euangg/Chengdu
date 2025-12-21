@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbi7lwvxylslm"]
+[gd_scene load_steps=10 format=3 uid="uid://dbi7lwvxylslm"]
 
 [ext_resource type="Script" uid="uid://otr7t11p7y1t" path="res://enemy/octopus/octopus.gd" id="1_a2w43"]
 [ext_resource type="Texture2D" uid="uid://54l4wxf15kds" path="res://enemy/octopus/Frame 12 (2).png" id="1_i3uts"]
+[ext_resource type="Texture2D" uid="uid://c6lr5osxgfa3w" path="res://enemy/octopus/up.png" id="3_5yj8x"]
 
 [sub_resource type="Animation" id="Animation_ldgku"]
 length = 0.001
@@ -123,6 +124,11 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -105)
 shape = SubResource("RectangleShape2D_a2w43")
+
+[node name="Up" type="Sprite2D" parent="."]
+position = Vector2(0, -539)
+texture = ExtResource("3_5yj8x")
+flip_v = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

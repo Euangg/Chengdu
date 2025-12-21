@@ -1,9 +1,11 @@
-extends CharacterBody2D
+extends Enemy
 
 const BIG_LASER = preload("uid://c7yf5k4hsw43i")
 
 func _physics_process(delta: float) -> void:
 	pass
+
+func sound():Global.play_sfx(Global.SFX_BIG_LASER)
 
 func shoot():
 	var l:Node2D=BIG_LASER.instantiate()
@@ -20,4 +22,4 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			%AnimationPlayer.play("idle")
 			%Timer.start()
 
-func _on_area_2d_body_entered(body: Player) -> void:body.try_get_hurt(99)
+func _on_area_2d_body_entered(body: Player) -> void:body.try_get_hurt(1)
