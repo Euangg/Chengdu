@@ -84,6 +84,17 @@ texture_normal = SubResource("AtlasTexture_wls4t")
 texture_hover = SubResource("AtlasTexture_57oxl")
 stretch_mode = 5
 
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "v0.4"
+
 [connection signal="pressed" from="TextureRect/VBoxContainer/TextureButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/TextureButton2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/TextureButton3" to="." method="_on_button_3_pressed"]

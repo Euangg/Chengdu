@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 						tween.tween_callback(shoot_ammo)
 			1:
 				if pressed:%SfxLaser.play()
-				velocity+=-30*vec.normalized()
+				velocity+=-40*vec.normalized()
 				%Particles2.emitting=true
 				%Laser.shoot()
 	

@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 		1:
 			if Input.is_action_just_pressed("mouse_left"):%SfxLaser.play()
 			if Input.is_action_pressed("mouse_left"):
-				velocity+=-30*vec.normalized()
+				velocity+=-40*vec.normalized()
 				%Particles2.emitting=true
 				%Laser.shoot()
 				

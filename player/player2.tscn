@@ -33,6 +33,7 @@ spread = 9.73
 initial_velocity_min = 176.64
 initial_velocity_max = 771.61
 gravity = Vector3(5, 0, 0)
+scale_min = 2.0
 scale_max = 2.0
 
 [sub_resource type="Animation" id="Animation_44w7n"]
@@ -170,7 +171,7 @@ process_material = SubResource("ParticleProcessMaterial_lmqe0")
 [node name="Particles2" type="GPUParticles2D" parent="Hand/CollisionShape2D"]
 unique_name_in_owner = true
 emitting = false
-amount = 200
+amount = 300
 texture = ExtResource("3_vi4lp")
 process_material = SubResource("ParticleProcessMaterial_et067")
 
@@ -203,6 +204,7 @@ one_shot = true
 [node name="SfxLaser" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("6_vi4lp")
+volume_db = 10.0
 bus = &"Sfx"
 
 [connection signal="timeout" from="TimerInvincible" to="." method="_on_timer_invincible_timeout"]

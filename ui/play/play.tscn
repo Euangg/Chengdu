@@ -82,13 +82,30 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="HeadPic" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(218, 64)
+position = Vector2(92, 64)
 texture = SubResource("AtlasTexture_tnm53")
+
+[node name="Label" type="Label" parent="CanvasLayer/HeadPic"]
+offset_left = 67.0
+offset_top = -22.0
+offset_right = 211.0
+offset_bottom = 27.0
+theme_override_font_sizes/font_size = 20
+text = "鼠标光标：控制方向
+鼠标左键：射击"
 
 [node name="HeadPic2" type="Sprite2D" parent="CanvasLayer"]
 unique_name_in_owner = true
-position = Vector2(1699, 68)
+position = Vector2(1835, 68)
 texture = SubResource("AtlasTexture_5cp7b")
+
+[node name="Label" type="Label" parent="CanvasLayer/HeadPic2"]
+offset_left = -233.0
+offset_top = 5.0
+offset_right = -55.0
+offset_bottom = 33.0
+theme_override_font_sizes/font_size = 20
+text = "WASD：方向与射击"
 
 [node name="WeaponPic" parent="CanvasLayer" instance=ExtResource("5_5cp7b")]
 unique_name_in_owner = true

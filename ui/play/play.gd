@@ -6,8 +6,8 @@ const HEART_1 = preload("uid://bpb6k63siyqkv")
 const HEART_2 = preload("uid://d0e1ty5c5gk3c")
 
 @onready var node_players: Node = $NodePlayers
-var player_1:Player
-var player_2:Player
+var player_1:Player=null
+var player_2:Player=null
 var enemy_dragon: Enemy=null
 var enemy_octopus:Enemy=null
 var boss_dragon_summoned=false
@@ -29,8 +29,10 @@ func _ready() -> void:
 		%NodeHeart.add_child(heart)
 	
 	%HeadPic2.visible=false
+	%WeaponPic2.visible=false
 	if player_2:
 		%HeadPic2.visible=true
+		%WeaponPic2.visible=true
 		for i in player_2.hp:
 			var pos=Vector2(1920-25-50*i,220)
 			var heart =HEART_2.instantiate()
@@ -64,7 +66,7 @@ func _physics_process(delta: float) -> void:
 			enemy_dragon.position=Vector2(960,%Camera2D.position.y-540)
 			add_child(enemy_dragon)
 			var tween=create_tween()
-			tween.tween_property(enemy_dragon,"velocity",Vector2(0,150),2)
+			tween.tween_property(enemy_dragon,"velocity",Vector2(0,180),2)
 			boss_dragon_summoned=true
 	if boss_octopus_summoned:
 		if enemy_octopus:
@@ -116,6 +118,13 @@ func _physics_process(delta: float) -> void:
 		
 		if player_2.weapon: %WeaponPic2.animation_player.play("laser")
 		else: %WeaponPic2.animation_player.play("shotgun")
+	
+	#失败判断
+	var is_fail:bool=true
+	if player_1.hp>0:is_fail=false
+	if player_2:
+		if player_2.hp>0:is_fail=false
+	if is_fail:Global.switch_ui(Global.UI_FAIL)
 
 
 func _on_area_2d_body_entered(body: Player) -> void:
