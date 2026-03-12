@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpqc7t7waexaq"]
+[gd_scene format=3 uid="uid://dpqc7t7waexaq"]
 
 [ext_resource type="Script" uid="uid://c8hcdb4kofdyi" path="res://ui/play/play.gd" id="1_maavd"]
-[ext_resource type="PackedScene" uid="uid://rwthc1455xnm" path="res://level/level_01.tscn" id="2_xyo1v"]
-[ext_resource type="PackedScene" uid="uid://ba6akroco1xnu" path="res://player/player.tscn" id="3_tnm53"]
+[ext_resource type="PackedScene" uid="uid://rwthc1455xnm" path="res://level/end/level_01.tscn" id="2_xyo1v"]
+[ext_resource type="PackedScene" uid="uid://ba6akroco1xnu" path="res://player/p1/player.tscn" id="3_tnm53"]
 [ext_resource type="Texture2D" uid="uid://c07d2je65qdwn" path="res://ui/play/ui.png" id="4_tnm53"]
 [ext_resource type="PackedScene" uid="uid://ccyosgbfmvs25" path="res://ui/play/weapon_pic_1.tscn" id="5_5cp7b"]
 [ext_resource type="PackedScene" uid="uid://c7untkwehq6cq" path="res://ui/play/weapon_pic_2.tscn" id="6_q2qwd"]
@@ -21,7 +21,7 @@ region = Rect2(979, 201, 133, 119)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q2qwd"]
 size = Vector2(1831, 472)
 
-[node name="Play" type="Control"]
+[node name="Play" type="Control" unique_id=1443812548]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,61 +31,61 @@ grow_vertical = 2
 script = ExtResource("1_maavd")
 metadata/_edit_horizontal_guides_ = [216.0]
 
-[node name="Level01" parent="." instance=ExtResource("2_xyo1v")]
+[node name="Level01" parent="." unique_id=1988197530 instance=ExtResource("2_xyo1v")]
 unique_name_in_owner = true
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Marker2D" type="Marker2D" parent="." unique_id=378115546]
 unique_name_in_owner = true
 position = Vector2(924, 401)
 
-[node name="MarkerBoss1" type="Marker2D" parent="."]
+[node name="MarkerBoss1" type="Marker2D" parent="." unique_id=1049176234]
 unique_name_in_owner = true
 position = Vector2(961, 5891)
 
-[node name="NodePlayers" type="Node" parent="."]
+[node name="NodePlayers" type="Node" parent="." unique_id=625869813]
 unique_name_in_owner = true
 
-[node name="Player" parent="NodePlayers" instance=ExtResource("3_tnm53")]
+[node name="Player" parent="NodePlayers" unique_id=694688745 instance=ExtResource("3_tnm53")]
 unique_name_in_owner = true
 position = Vector2(744, 228)
 
-[node name="NodeElements" type="Node" parent="."]
+[node name="NodeElements" type="Node" parent="." unique_id=213774390]
 unique_name_in_owner = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1239609263]
 unique_name_in_owner = true
 position = Vector2(960, 543)
 
-[node name="Area2D" type="Area2D" parent="Camera2D"]
+[node name="Area2D" type="Area2D" parent="Camera2D" unique_id=608640703]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Area2D" unique_id=324742207]
 position = Vector2(2.5, -569)
 shape = SubResource("RectangleShape2D_tnm53")
 
-[node name="Area2D2" type="Area2D" parent="Camera2D"]
+[node name="Area2D2" type="Area2D" parent="Camera2D" unique_id=657878548]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Camera2D/Area2D2"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Camera2D/Area2D2" unique_id=949776406]
 position = Vector2(2.5, 568)
 shape = SubResource("RectangleShape2D_tnm53")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=982904258]
 
-[node name="NodeHeart" type="Node" parent="CanvasLayer"]
+[node name="NodeHeart" type="Node" parent="CanvasLayer" unique_id=2013108463]
 unique_name_in_owner = true
 
-[node name="NodeHeart2" type="Node" parent="CanvasLayer"]
+[node name="NodeHeart2" type="Node" parent="CanvasLayer" unique_id=1963010912]
 unique_name_in_owner = true
 
-[node name="HeadPic" type="Sprite2D" parent="CanvasLayer"]
+[node name="HeadPic" type="Sprite2D" parent="CanvasLayer" unique_id=1732277149]
 position = Vector2(92, 64)
 texture = SubResource("AtlasTexture_tnm53")
 
-[node name="Label" type="Label" parent="CanvasLayer/HeadPic"]
+[node name="Label" type="Label" parent="CanvasLayer/HeadPic" unique_id=924555974]
 offset_left = 67.0
 offset_top = -22.0
 offset_right = 211.0
@@ -94,12 +94,12 @@ theme_override_font_sizes/font_size = 20
 text = "鼠标光标：控制方向
 鼠标左键：射击"
 
-[node name="HeadPic2" type="Sprite2D" parent="CanvasLayer"]
+[node name="HeadPic2" type="Sprite2D" parent="CanvasLayer" unique_id=1888722380]
 unique_name_in_owner = true
 position = Vector2(1835, 68)
 texture = SubResource("AtlasTexture_5cp7b")
 
-[node name="Label" type="Label" parent="CanvasLayer/HeadPic2"]
+[node name="Label" type="Label" parent="CanvasLayer/HeadPic2" unique_id=535260239]
 offset_left = -233.0
 offset_top = 5.0
 offset_right = -55.0
@@ -107,21 +107,21 @@ offset_bottom = 33.0
 theme_override_font_sizes/font_size = 20
 text = "WASD：方向与射击"
 
-[node name="WeaponPic" parent="CanvasLayer" instance=ExtResource("5_5cp7b")]
+[node name="WeaponPic" parent="CanvasLayer" unique_id=119596724 instance=ExtResource("5_5cp7b")]
 unique_name_in_owner = true
 position = Vector2(120, 888)
 
-[node name="WeaponPic2" parent="CanvasLayer" instance=ExtResource("6_q2qwd")]
+[node name="WeaponPic2" parent="CanvasLayer" unique_id=974667361 instance=ExtResource("6_q2qwd")]
 unique_name_in_owner = true
 position = Vector2(1801, 903)
 
-[node name="AreaPass" type="Area2D" parent="."]
+[node name="AreaPass" type="Area2D" parent="." unique_id=1646255848]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 2
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPass"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPass" unique_id=861088370]
 position = Vector2(960, 231)
 shape = SubResource("RectangleShape2D_q2qwd")
 

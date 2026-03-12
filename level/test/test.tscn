@@ -1,0 +1,17 @@
+[gd_scene format=4 uid="uid://d0aim3ilxjfwb"]
+
+[ext_resource type="TileSet" uid="uid://dxfkldu4btlbs" path="res://level/end/tile.tres" id="1_e2u3k"]
+[ext_resource type="Script" uid="uid://dilrfxk46l1v1" path="res://level/test/test.gd" id="1_nd51b"]
+[ext_resource type="PackedScene" uid="uid://ba6akroco1xnu" path="res://player/p1/player.tscn" id="2_nd51b"]
+
+[node name="Test" type="Node2D" unique_id=1652933280]
+script = ExtResource("1_nd51b")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1429210307]
+tile_map_data = PackedByteArray("AAACAAYAAAABAAAAAAADAAYAAAABAAAAAAAEAAYAAAABAAAAAAAFAAcAAAABAAAAAAAGAAcAAAABAAAAAAAHAAcAAAABAAAAAAAIAAcAAAABAAAAAAAJAAcAAAABAAAAAAAKAAcAAAABAAAAAAALAAcAAAABAAAAAAAMAAgAAAABAAAAAAANAAgAAAABAAAAAAAOAAgAAAABAAAAAAAOAAkAAAABAAAAAAAPAAkAAAABAAAAAAAQAAkAAAABAAAAAAARAAkAAAABAAAAAAASAAkAAAABAAAAAAATAAkAAAABAAAAAAAUAAkAAAABAAAAAAAVAAkAAAABAAAAAAAWAAkAAAABAAAAAAAXAAkAAAABAAAAAAAYAAkAAAABAAAAAAAZAAoAAAABAAAAAAAaAAoAAAABAAAAAAAaAAkAAAABAAAAAAAbAAkAAAABAAAAAAAcAAkAAAABAAAAAAAdAAkAAAABAAAAAAAdAAoAAAABAAAAAAAeAAoAAAABAAAAAAAfAAoAAAABAAAAAAAgAAoAAAABAAAAAAAhAAoAAAABAAAAAAAiAAoAAAABAAAAAAAjAAoAAAABAAAAAAAkAAoAAAABAAAAAAAlAAoAAAABAAAAAAAmAAoAAAABAAAAAAAnAAoAAAABAAAAAAAoAAoAAAABAAAAAAAoAAkAAAABAAAAAAA=")
+tile_set = ExtResource("1_e2u3k")
+
+[node name="Player" parent="." unique_id=651232532 instance=ExtResource("2_nd51b")]
+position = Vector2(346, 244)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=111124977]

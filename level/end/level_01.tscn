@@ -1,0 +1,815 @@
+[gd_scene format=4 uid="uid://rwthc1455xnm"]
+
+[ext_resource type="Texture2D" uid="uid://bg0solarvojtg" path="res://level/end/c3.png" id="1_dqkq3"]
+[ext_resource type="PackedScene" uid="uid://bv6e5qmfwyftd" path="res://level/end/building4.tscn" id="2_42frl"]
+[ext_resource type="TileSet" uid="uid://dxfkldu4btlbs" path="res://level/end/tile.tres" id="3_bu4tk"]
+[ext_resource type="PackedScene" uid="uid://fauhy0e6fj8g" path="res://enemy/pillworm/enemy_pillworm.tscn" id="4_hnvvp"]
+[ext_resource type="PackedScene" uid="uid://d2cfua5tre3cm" path="res://enemy/bat/fly.tscn" id="4_ij31a"]
+[ext_resource type="PackedScene" uid="uid://hxdj1ep5p5s1" path="res://enemy/flower/base.tscn" id="6_v6ry1"]
+[ext_resource type="PackedScene" uid="uid://bvp7pgcoe1lxs" path="res://enemy/flower/flower.tscn" id="7_y6g1l"]
+[ext_resource type="PackedScene" uid="uid://id2lu0ynmrm3" path="res://item/potion.tscn" id="8_dqkq3"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bu4tk"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_42frl"]
+
+[node name="Level01" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.813, 0.145)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+modulate = Color(1, 0.9607843, 1, 1)
+texture = ExtResource("1_dqkq3")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="Parallax2D/Sprite2D"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.88235295, 0.6784314, 0.7372549, 0.34509805)
+
+[node name="Building" parent="." instance=ExtResource("2_42frl")]
+metadata/_edit_lock_ = true
+
+[node name="Building2" parent="." instance=ExtResource("2_42frl")]
+position = Vector2(0, 21791)
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(928, 0)
+shape = SubResource("WorldBoundaryShape2D_bu4tk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1654, 43579)
+shape = SubResource("WorldBoundaryShape2D_42frl")
+
+[node name="CameraRange" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="CameraRange"]
+
+[node name="Marker2D2" type="Marker2D" parent="CameraRange"]
+position = Vector2(1920, 43579)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(0, 2)
+tile_map_data = PackedByteArray("AAAJAAcAAAAAAAAAAAAKAAcAAAABAAAAAAAMAAcAAAADAAAAAAANAAcAAAABAAAAAAAPAAsAAAAAAAAAAAAQAAsAAAABAAAAAAARAAsAAAABAAAAAAASAAsAAAACAAAAAAATAAsAAAAEAAAAAAALAA4AAAADAAAAAAAMAA4AAAAEAAAAAAAJAA4AAAAAAAAAAAAKAA4AAAABAAAAAAALAAcAAAABAAAAAAAOAAcAAAABAAAAAAAPAAcAAAAEAAAAAAAPABIAAAABAAAAAAAQABIAAAABAAAAAAARABIAAAABAAAAAAASABIAAAABAAAAAAAOABIAAAAAAAAAAAATABIAAAAEAAAAAAAJABYAAAAAAAAAAAAKABYAAAAEAAAAAAAMABkAAAAAAAAAAAANABkAAAABAAAAAAAOABkAAAABAAAAAAAPABkAAAACAAAAAAAQABkAAAABAAAAAAARABkAAAAEAAAAAAATAB4AAAABAAAAAAAUAB4AAAAEAAAAAAASAB4AAAAAAAAAAAAMACMAAAABAAAAAAANACMAAAABAAAAAAALACMAAAAAAAAAAAAOACMAAAAEAAAAAAASACcAAAAAAAAAAAATACcAAAAEAAAAAAAOADEAAAABAAAAAAAPADEAAAABAAAAAAAQADEAAAADAAAAAAASADEAAAAEAAAAAAARADEAAAABAAAAAAAMADEAAAAAAAAAAAANADEAAAADAAAAAAAJADcAAAAAAAAAAAAKADcAAAABAAAAAAALADcAAAABAAAAAAAMADcAAAACAAAAAAANADcAAAAEAAAAAAAPADsAAAAAAAAAAAAQADsAAAADAAAAAAARADsAAAAEAAAAAAAMAEAAAAABAAAAAAANAEAAAAABAAAAAAAOAEAAAAABAAAAAAALAEAAAAADAAAAAAAKAEAAAAAAAAAAAAAPAEAAAAAEAAAAAAANAEYAAAAAAAAAAAAOAEYAAAACAAAAAAAPAEYAAAABAAAAAAAQAEYAAAABAAAAAAARAEYAAAAEAAAAAAAKAE4AAAABAAAAAAALAE4AAAABAAAAAAAMAE4AAAADAAAAAAANAE4AAAAEAAAAAAAKACwAAAAAAAAAAAALACwAAAACAAAAAAAMACwAAAAEAAAAAAAKAE8AAAABAAAAAAALAGAAAAAAAAAAAAAMAGAAAAABAAAAAAANAGAAAAABAAAAAAAOAGAAAAABAAAAAAAPAGAAAAABAAAAAAAQAGAAAAAEAAAAAAARAGEAAAAEAAAAAAAQAGEAAAADAAAAAAAPAGEAAAAAAAAAAAAHAGoAAAAEAAAAAAAHAGsAAAABAAAAAAAJAGUAAAAAAAAAAAANAGsAAAAAAAAAAAAOAGsAAAABAAAAAAAOAGoAAAABAAAAAAAOAGkAAAAAAAAAAAAPAGkAAAABAAAAAAAQAGkAAAAEAAAAAAAQAGgAAAABAAAAAAAWAGYAAAABAAAAAAAWAGcAAAABAAAAAAAVAGYAAAAAAAAAAAAMAHAAAAABAAAAAAANAHAAAAABAAAAAAAOAHAAAAAEAAAAAAARAHQAAAABAAAAAAASAHQAAAACAAAAAAATAHQAAAADAAAAAAALAHQAAAABAAAAAAALAHUAAAABAAAAAAALAHYAAAABAAAAAAALAHcAAAABAAAAAAANAHgAAAAEAAAAAAANAHkAAAABAAAAAAANAHoAAAACAAAAAAAOAHoAAAABAAAAAAAPAHoAAAABAAAAAAAQAHoAAAABAAAAAAARAHoAAAAEAAAAAAAJAIAAAAAAAAAAAAAKAIAAAAAEAAAAAAAPAIMAAAABAAAAAAAQAIMAAAABAAAAAAAQAIIAAAAEAAAAAAAVAH0AAAAAAAAAAAAWAH0AAAABAAAAAAAKAHUAAAAAAAAAAAAKAHYAAAAAAAAAAAAPAHsAAAABAAAAAAAPAHwAAAABAAAAAAAOAIMAAAAAAAAAAAANAIgAAAABAAAAAAAQAIgAAAABAAAAAAAMAIgAAAAAAAAAAAARAIgAAAAEAAAAAAAOAIsAAAAAAAAAAAAPAIsAAAAEAAAAAAAOAJEAAAAAAAAAAAAPAJEAAAAEAAAAAAAIAIoAAAAEAAAAAAAWAIoAAAABAAAAAAAVAIoAAAAAAAAAAAAUAEsAAAAAAAAAAAAVAEsAAAABAAAAAAAWAEsAAAACAAAAAAALAJQAAAAEAAAAAAASAJQAAAAAAAAAAAANAJcAAAAAAAAAAAAQAJcAAAAEAAAAAAAOAJ0AAAABAAAAAAAPAJ0AAAABAAAAAAANAJ4AAAAAAAAAAAAQAJ4AAAAEAAAAAAAHAJwAAAAEAAAAAAAOAKYAAAAAAAAAAAAPAKYAAAABAAAAAAAQAKYAAAAEAAAAAAAMAKoAAAAAAAAAAAAIAFkAAAABAAAAAAAJAFkAAAABAAAAAAAJAFoAAAAAAAAAAAAKAFkAAAAEAAAAAAAKAFoAAAABAAAAAAALAFoAAAABAAAAAAAMAFoAAAAEAAAAAAATAFgAAAAAAAAAAAATAFkAAAAAAAAAAAATAFcAAAAAAAAAAAAUAFcAAAABAAAAAAAPAFMAAAABAAAAAAAQAFMAAAABAAAAAAARAFMAAAADAAAAAAASAFMAAAAEAAAAAAAOAFMAAAAAAAAAAAANAKoAAAABAAAAAAAOAKsAAAABAAAAAAAPAKwAAAAEAAAAAAAQAK0AAAABAAAAAAAPAK0AAAABAAAAAAAUAKwAAAAEAAAAAAAUAK0AAAABAAAAAAANAKsAAAABAAAAAAAOAKwAAAABAAAAAAARALIAAAABAAAAAAAQALIAAAABAAAAAAAPALIAAAABAAAAAAAOALIAAAABAAAAAAAHAK4AAAABAAAAAAAOALoAAAABAAAAAAASALYAAAAAAAAAAAASALcAAAACAAAAAAAKAMEAAAABAAAAAAAKAMIAAAABAAAAAAATAMMAAAAAAAAAAAAUAMMAAAAEAAAAAAALAMEAAAAEAAAAAAAMAMEAAAAEAAAAAAAKAMMAAAAAAAAAAAANALoAAAABAAAAAAALALgAAAABAAAAAAAMALkAAAAEAAAAAAAPALkAAAAAAAAAAAAPAMcAAAABAAAAAAARAMgAAAABAAAAAAARAMoAAAABAAAAAAARAMkAAAABAAAAAAAQAM8AAAAEAAAAAAAOAM4AAAAEAAAAAAAPAM8AAAAAAAAAAAARANAAAAAAAAAAAAASANAAAAACAAAAAAAVAM8AAAABAAAAAAAWAM4AAAAAAAAAAAALANUAAAABAAAAAAALANQAAAAAAAAAAAAMANQAAAABAAAAAAANANQAAAABAAAAAAAKANwAAAAAAAAAAAAKANsAAAAAAAAAAAALANwAAAAEAAAAAAAMAN0AAAAAAAAAAAAOAN0AAAABAAAAAAAWAN8AAAAAAAAAAAAVAOAAAAAAAAAAAAAUAOEAAAAAAAAAAAARAOIAAAAAAAAAAAARAOMAAAAAAAAAAAAPAOMAAAAAAAAAAAAOAOMAAAAAAAAAAAANAOMAAAAAAAAAAAAMAOQAAAAAAAAAAAANAAABAAAAAAEAAAAJAPsAAAAEAAEAAAAJAPwAAAABAAEAAAAKAPwAAAAEAAEAAAAQAAABAAAEAAEAAAATAPwAAAAAAAEAAAAUAPsAAAAAAAEAAAAUAPwAAAABAAEAAAAKAAMBAAABAAEAAAAJAAQBAAABAAEAAAAJAAUBAAABAAEAAAATAAMBAAABAAEAAAAUAAQBAAABAAEAAAAUAAUBAAABAAEAAAAJAAcBAAABAAEAAAAKAAgBAAABAAEAAAAUAAcBAAABAAEAAAATAAgBAAABAAEAAAAOAAoBAAABAAEAAAAQAAoBAAAEAAEAAAANAAoBAAAAAAEAAAAOAAYBAAAAAAEAAAAPAAYBAAAEAAEAAAALABABAAABAAEAAAALABEBAAACAAEAAAALABIBAAABAAEAAAALABMBAAABAAEAAAAQABMBAAABAAEAAAAQABQBAAABAAEAAAAQABUBAAABAAEAAAAQABYBAAABAAEAAAAQABcBAAABAAEAAAANABcBAAABAAEAAAANABgBAAABAAEAAAANABkBAAABAAEAAAANABoBAAABAAEAAAANABsBAAABAAEAAAANABwBAAABAAEAAAAVABQBAAACAAEAAAAVABUBAAABAAEAAAATAA0BAAABAAEAAAATAA4BAAABAAEAAAAJABsBAAABAAEAAAAJABwBAAABAAEAAAAJAB0BAAABAAEAAAAUABoBAAABAAEAAAAUABsBAAABAAEAAAAMACkBAAABAAEAAAAMACoBAAABAAEAAAAMACsBAAABAAEAAAAMACwBAAABAAEAAAAMAC0BAAABAAEAAAARAC0BAAABAAEAAAARAC4BAAABAAEAAAARAC8BAAABAAEAAAARADABAAABAAEAAAARADEBAAABAAEAAAARADIBAAABAAEAAAAVACgBAAABAAEAAAAVACkBAAABAAEAAAAOADQBAAABAAEAAAAOADUBAAABAAEAAAAOADYBAAABAAEAAAAOADcBAAABAAEAAAAOADgBAAABAAEAAAAOADkBAAABAAEAAAAJADEBAAABAAEAAAAJADIBAAACAAEAAAAJADMBAAABAAEAAAAJADQBAAABAAEAAAAVADMBAAABAAEAAAAVADQBAAABAAEAAAATADsBAAABAAEAAAATADwBAAABAAEAAAATAD0BAAABAAEAAAATAD4BAAABAAEAAAATAD8BAAABAAEAAAAMAD4BAAABAAEAAAAMAD8BAAABAAEAAAAMAEABAAABAAEAAAAMAEEBAAABAAEAAAAMAEIBAAABAAEAAAAMAEMBAAABAAEAAAAMAEQBAAABAAEAAAANADcBAAABAAEAAAANAEEBAAABAAEAAAAQAEcBAAABAAEAAAAQAEgBAAACAAEAAAAQAEkBAAABAAEAAAAQAEoBAAABAAEAAAAQAEsBAAABAAEAAAAQAEwBAAABAAEAAAAVAEMBAAABAAEAAAAVAEQBAAABAAEAAAAVAEUBAAABAAEAAAAJAEcBAAABAAEAAAAJAEgBAAABAAEAAAAJAEkBAAABAAEAAAAJAEoBAAABAAEAAAAMAEwBAAABAAEAAAAMAE0BAAABAAEAAAAMAE4BAAABAAEAAAAMAE8BAAABAAEAAAAMAFABAAABAAEAAAAMAFEBAAABAAEAAAAJADwBAAABAAEAAAASADUBAAABAAEAAAATAE8BAAABAAEAAAATAFABAAABAAEAAAATAFEBAAABAAEAAAATAFIBAAABAAEAAAATAFMBAAABAAEAAAATAFQBAAABAAEAAAATAFUBAAABAAEAAAAPAFYBAAABAAEAAAAPAFcBAAABAAEAAAAPAFgBAAABAAEAAAAVAEoBAAABAAEAAAAJAFUBAAABAAEAAAAJAFYBAAABAAEAAAAJAFcBAAABAAEAAAAKAFcBAAABAAEAAAAKAFgBAAABAAEAAAAKAFkBAAABAAEAAAAKAFoBAAABAAEAAAAKAFsBAAABAAEAAAASAFsBAAABAAEAAAASAFwBAAABAAEAAAASAF0BAAABAAEAAAARAF0BAAABAAEAAAARAF4BAAABAAEAAAARAGABAAABAAEAAAARAGEBAAABAAEAAAARAGIBAAABAAEAAAARAF8BAAABAAEAAAANAFwBAAABAAEAAAANAF0BAAABAAEAAAANAF4BAAABAAEAAAAVAFcBAAABAAEAAAAVAFgBAAABAAEAAAAMAGMBAAABAAEAAAAMAGQBAAABAAEAAAAMAGUBAAABAAEAAAAMAGYBAAABAAEAAAAMAGcBAAABAAEAAAAUAGUBAAABAAEAAAAUAGYBAAABAAEAAAAUAGcBAAABAAEAAAAUAGgBAAABAAEAAAAUAGkBAAABAAEAAAAPAGkBAAABAAEAAAAPAGoBAAABAAEAAAAPAGsBAAABAAEAAAAPAGwBAAABAAEAAAAPAG0BAAABAAEAAAAIAF8BAAABAAEAAAAIAGABAAABAAEAAAASAFQBAAABAAEAAAALAGUBAAABAAEAAAAKAG4BAAABAAEAAAAKAG8BAAABAAEAAAAKAHABAAABAAEAAAAJAHABAAABAAEAAAASAHEBAAABAAEAAAASAHIBAAABAAEAAAASAHMBAAABAAEAAAASAHQBAAABAAEAAAASAHUBAAABAAEAAAATAHMBAAABAAEAAAAMAHUBAAABAAEAAAAMAHYBAAABAAEAAAANAHgBAAABAAEAAAAOAHkBAAABAAEAAAAPAHoBAAABAAEAAAAOAHsBAAABAAEAAAANAHwBAAABAAEAAAATAH0BAAABAAEAAAASAH4BAAABAAEAAAARAH8BAAABAAEAAAASAIABAAABAAEAAAATAIEBAAABAAEAAAAKAIIBAAAEAAEAAAALAIMBAAAEAAEAAAAMAIQBAAAEAAEAAAALAIUBAAABAAEAAAAKAIYBAAABAAEAAAANAIkBAAAAAAEAAAAOAIgBAAAAAAEAAAAPAIcBAAAAAAEAAAAQAIYBAAACAAEAAAARAIcBAAAEAAEAAAASAIgBAAABAAEAAAATAIkBAAAEAAEAAAAQAIcBAAABAAEAAAAOAIkBAAABAAEAAAARAIgBAAABAAEAAAASAIkBAAABAAEAAAAPAIgBAAABAAEAAAAKAKABAAABAAEAAAALAKABAAABAAEAAAALAKEBAAABAAEAAAAQAKABAAABAAEAAAARAKABAAABAAEAAAASAKABAAABAAEAAAATAKABAAABAAEAAAATAKEBAAABAAEAAAANAKYBAAABAAEAAAAOAKUBAAABAAEAAAAPAKUBAAABAAEAAAAQAKUBAAABAAEAAAARAKYBAAABAAEAAAAJAKABAAABAAEAAAAIAJ8BAAABAAEAAAAPAJ8BAAABAAEAAAAIAKQBAAABAAAAAAAJAKQBAAABAAAAAAAVAKQBAAABAAAAAAAWAKQBAAABAAAAAAAKAKwBAAABAAEAAAAKAK0BAAABAAEAAAAKAK4BAAABAAEAAAALAK8BAAABAAEAAAAMAK4BAAABAAEAAAAMAK0BAAABAAEAAAAMAKwBAAABAAEAAAALAKsBAAABAAEAAAAOALEBAAABAAEAAAAQALEBAAABAAEAAAANALIBAAABAAEAAAANALMBAAABAAEAAAANALQBAAABAAEAAAANALUBAAABAAEAAAAOALYBAAABAAEAAAAQALYBAAABAAEAAAARALQBAAACAAEAAAARALIBAAABAAEAAAARALMBAAABAAEAAAARALUBAAABAAEAAAARAKwBAAABAAEAAAARAK0BAAABAAEAAAARAK4BAAABAAEAAAASAKsBAAABAAEAAAATAKwBAAABAAEAAAATAK0BAAABAAEAAAATAK4BAAABAAEAAAASAK8BAAABAAEAAAAOAMsBAAABAAEAAAAQAMsBAAABAAEAAAAMAMkBAAABAAEAAAAMAMoBAAABAAEAAAAOAMkBAAABAAEAAAAOAMoBAAABAAEAAAAOAMwBAAABAAEAAAAQAMkBAAABAAEAAAAQAMoBAAABAAEAAAAQAMwBAAABAAEAAAASAMkBAAABAAEAAAASAMoBAAABAAEAAAAOAMQBAAAAAAEAAAAOAMUBAAAAAAEAAAAQAMQBAAAAAAEAAAAQAMUBAAAAAAEAAAANAL4BAAAEAAEAAAAMAL4BAAAAAAEAAAALAL4BAAAAAAEAAAAKAL4BAAAAAAEAAAAIAMABAAAAAAEAAAAIAMEBAAAAAAEAAAAIAMIBAAAAAAEAAAAJAMMBAAAAAAEAAAAMAMIBAAABAAEAAAANAMEBAAABAAEAAAANAMABAAABAAEAAAANAL8BAAABAAEAAAARAL4BAAAAAAEAAAARAL8BAAAAAAEAAAARAMABAAAAAAEAAAARAMEBAAAAAAEAAAASAMIBAAAAAAEAAAAVAMMBAAAAAAEAAAAWAMIBAAAAAAEAAAAWAMEBAAAAAAEAAAAUAL4BAAAEAAEAAAATAL4BAAABAAEAAAASAL4BAAABAAEAAAAIAMUBAAAAAAEAAAAWAMUBAAABAAEAAAATANMBAAAEAAEAAAAUANQBAAAEAAEAAAAUANUBAAABAAIAAAAUANYBAAABAAIAAAAUANcBAAABAAIAAAAUANgBAAABAAIAAAAUANkBAAABAAIAAAAMANsBAAABAAIAAAAOANYBAAAAAAEAAAAQANYBAAAEAAEAAAAQAN4BAAABAAIAAAAKANQBAAAAAAEAAAAKANUBAAABAAIAAAAKANYBAAABAAIAAAAKANcBAAABAAIAAAAKANgBAAABAAIAAAAKANkBAAABAAIAAAAKANoBAAABAAIAAAALANMBAAAAAAEAAAALANsBAAABAAIAAAALAOABAAABAAIAAAAMAN8BAAAAAAEAAAARANcBAAAEAAEAAAARANgBAAABAAIAAAARANkBAAABAAIAAAARANoBAAABAAIAAAARANsBAAABAAIAAAARANwBAAABAAIAAAARAN0BAAABAAIAAAAMANIBAAAAAAEAAAANANIBAAABAAIAAAARANIBAAABAAIAAAASANIBAAAEAAEAAAAJAN8BAAAEAAEAAAAKAOABAAABAAIAAAAUANoBAAABAAIAAAAUANsBAAABAAIAAAAUANwBAAABAAIAAAAUAN0BAAABAAIAAAAUAN4BAAABAAIAAAAUAN8BAAABAAIAAAATAOABAAAAAAEAAAASAOEBAAABAAIAAAARAOEBAAAAAAEAAAAQAOIBAAAAAAEAAAAMAOQBAAAAAAEAAAANAOQBAAABAAIAAAANANcBAAAAAAEAAAAMAOUBAAABAAIAAAALAOYBAAABAAEAAAAKAOcBAAABAAEAAAAKAOkBAAABAAEAAAAKAOgBAAABAAEAAAAKAOoBAAABAAEAAAAKAOsBAAABAAEAAAAKAOwBAAABAAEAAAAKAO0BAAABAAEAAAAKAO4BAAABAAEAAAAMAPABAAABAAEAAAAQAPABAAABAAEAAAASAPABAAABAAEAAAASAO8BAAABAAEAAAAWAOQBAAABAAEAAAAWAOMBAAABAAEAAAAVAOQBAAABAAEAAAATAOUBAAABAAEAAAATAOYBAAABAAIAAAAQAOcBAAABAAIAAAAQAOgBAAABAAEAAAAPAOgBAAABAAIAAAAPAOkBAAABAAIAAAAOAOkBAAABAAEAAAAPAOoBAAABAAIAAAAPAOwBAAABAAEAAAARAPABAAABAAEAAAAPAPABAAABAAEAAAAOAOsBAAABAAEAAAAOAOoBAAABAAEAAAAPAOsBAAABAAIAAAALAO8BAAABAAEAAAALAO4BAAABAAEAAAAMAO8BAAABAAEAAAAMAOABAAABAAEAAAAJAPcBAAABAAIAAAAKAPcBAAABAAIAAAALAPcBAAABAAIAAAAMAPcBAAABAAIAAAAQAPoBAAABAAIAAAARAPoBAAABAAIAAAASAPoBAAABAAIAAAAKAP4BAAABAAIAAAALAP4BAAABAAIAAAAMAP4BAAABAAIAAAAOAAYCAAABAAIAAAAPAAYCAAABAAIAAAAQAAYCAAABAAIAAAAPAPEAAAABAAEAAAAHAPAAAAABAAEAAAAWAPAAAAABAAEAAAAPAAUCAAABAAIAAAAKAP0BAAABAAIAAAATAP8BAAABAAIAAAATAAACAAABAAIAAAATAAECAAABAAIAAAATAAICAAABAAIAAAAJAAMCAAABAAIAAAAIAAMCAAABAAIAAAAIAAQCAAABAAIAAAALAAwCAAABAAIAAAALAA0CAAABAAIAAAALAA4CAAABAAIAAAAMAA0CAAABAAIAAAAKAAMCAAABAAIAAAATAAoCAAABAAIAAAATAAsCAAABAAIAAAAUAAsCAAABAAIAAAAUAAoCAAABAAIAAAAQABICAAABAAIAAAARABICAAABAAIAAAASABICAAABAAIAAAARABMCAAABAAIAAAAJABkCAAABAAIAAAAKABkCAAABAAIAAAALABkCAAABAAIAAAAMABkCAAABAAIAAAANABkCAAABAAIAAAAQABkCAAABAAIAAAARABkCAAABAAIAAAASABkCAAABAAIAAAATABkCAAABAAIAAAAUABkCAAABAAIAAAAWABkCAAABAAIAAAAJACUCAAABAAIAAAAKACUCAAABAAIAAAALACUCAAABAAIAAAAMACUCAAABAAIAAAANACUCAAABAAIAAAAOACUCAAABAAIAAAAPACUCAAABAAIAAAAQACUCAAABAAIAAAAUACUCAAABAAIAAAAVACUCAAABAAIAAAAWACUCAAABAAIAAAAHADsCAAABAAIAAAAIADsCAAABAAIAAAAJADsCAAABAAIAAAAKADsCAAABAAIAAAALADsCAAABAAIAAAAPADsCAAABAAIAAAAQADsCAAABAAIAAAARADsCAAABAAIAAAASADsCAAABAAIAAAATADsCAAABAAIAAAAUADsCAAABAAIAAAALADECAAABAAIAAAAMADECAAABAAIAAAATAC0CAAABAAIAAAAUAC0CAAABAAIAAAAJAEsCAAABAAIAAAAKAEsCAAABAAIAAAALAEsCAAABAAIAAAAMAEsCAAABAAIAAAANAEsCAAABAAIAAAATAEsCAAABAAIAAAAUAEsCAAABAAIAAAAVAEsCAAABAAIAAAAWAEsCAAABAAIAAAAKAFkCAAABAAIAAAAOAFkCAAABAAIAAAASAFkCAAABAAIAAAAWAFkCAAABAAIAAAAHAGcCAAABAAIAAAAIAGcCAAABAAIAAAAJAGcCAAABAAIAAAAKAGcCAAABAAIAAAALAGcCAAABAAIAAAAPAGcCAAABAAIAAAAQAGcCAAABAAIAAAARAGcCAAABAAIAAAASAGcCAAABAAIAAAATAGcCAAABAAIAAAAUAGcCAAABAAIAAAAHAIUCAAABAAIAAAAIAIUCAAABAAIAAAAJAIUCAAABAAIAAAAKAIUCAAABAAIAAAATAIUCAAABAAIAAAAUAIUCAAABAAIAAAAVAIUCAAABAAIAAAAWAIUCAAABAAIAAAAHAKgCAAABAAIAAAAIAKgCAAABAAIAAAAJAKgCAAABAAIAAAAKAKgCAAABAAIAAAALAKgCAAABAAIAAAAMAKgCAAABAAIAAAANAKgCAAABAAIAAAAOAKgCAAABAAIAAAAPAKgCAAABAAIAAAAQAKgCAAABAAIAAAARAKgCAAABAAIAAAASAKgCAAABAAIAAAATAKgCAAABAAIAAAAUAKgCAAABAAIAAAAVAKgCAAABAAIAAAAWAKgCAAABAAIAAAALAKcCAAABAAIAAAAMAKcCAAABAAIAAAANAKcCAAABAAIAAAAOAKcCAAABAAIAAAAPAKcCAAABAAIAAAAQAKcCAAABAAIAAAARAKcCAAABAAIAAAASAKcCAAABAAIAAAAQAL4AAAAAAAAAAAAQAL8AAAABAAAAAAARAL8AAAAEAAAAAAASAL4AAAAEAAAAAAALAMwAAAAAAAAAAAAMAM0AAAABAAAAAAAMAMwAAAABAAAAAAAPANwAAAAEAAAAAAAPAN0AAAABAAAAAAAQAN0AAAAEAAAAAAAOANwAAAAAAAAAAAAOAEsCAAACAAIAAAAPAEsCAAABAAIAAAAMAKECAAABAAIAAAAPAJ8CAAABAAIAAAARAKECAAABAAIAAAARAKMCAAABAAIAAAASAKECAAABAAIAAAASAKMCAAABAAIAAAATAKICAAABAAIAAAATAKMCAAABAAIAAAATAKQCAAABAAIAAAALAKECAAABAAIAAAAMAJ8CAAABAAIAAAAMAKACAAABAAIAAAANAJ0CAAABAAIAAAANAJ4CAAABAAIAAAAOAJwCAAABAAIAAAAPAJ0CAAABAAIAAAAPAJ4CAAABAAIAAAAQAJ8CAAABAAIAAAARAJ8CAAABAAIAAAASAJ8CAAABAAIAAAATAKACAAABAAIAAAATAKECAAABAAIAAAALAKYCAAABAAIAAAANAN8BAAABAAIAAAAUAOUBAAABAAIAAAAHAHAAAAAAAAAAAAAIAKoBAAABAAEAAAAHAKsBAAABAAEAAAAHAKwBAAABAAEAAAAHAK0BAAABAAEAAAAHAK4BAAABAAEAAAAHAK8BAAABAAEAAAAHALABAAABAAEAAAAHALEBAAABAAEAAAAHALIBAAABAAEAAAAHALMBAAABAAEAAAAHALQBAAABAAEAAAAHALUBAAABAAEAAAAHALYBAAABAAEAAAAHALcBAAABAAEAAAAIALgBAAABAAEAAAAVAKoBAAABAAEAAAAWAKsBAAABAAEAAAAWAKwBAAABAAEAAAAWAK0BAAABAAEAAAAWAK4BAAABAAEAAAAWAK8BAAABAAEAAAAWALABAAABAAEAAAAWALEBAAABAAEAAAAWALIBAAABAAEAAAAWALMBAAABAAEAAAAWALQBAAABAAEAAAAWALUBAAABAAEAAAAWALYBAAABAAEAAAAWALcBAAABAAEAAAAVALgBAAABAAEAAAAHAMABAAABAAEAAAAHAMEBAAABAAEAAAAHAMIBAAABAAEAAAAXAMABAAABAAEAAAAHAJ8BAAABAAEAAAAVAFcAAAABAAAAAAAHAIoAAAADAAAAAAASAPkBAAABAAEAAAAHAHgCAAABAAIAAAAIAHgCAAABAAIAAAALAHgCAAABAAIAAAAMAHgCAAABAAIAAAAPAHgCAAABAAIAAAAQAHgCAAABAAIAAAATAHgCAAABAAIAAAAUAHgCAAABAAIAAAAVAFkCAAABAAIAAAARAFkCAAABAAIAAAANAFkCAAABAAIAAAAJAFkCAAABAAIAAAAHAL8AAAABAAAAAAAMAKMAAAAAAAAAAAANAKMAAAABAAAAAAAOAKMAAAAEAAAAAAANAMEAAAAEAAAAAAA=")
+tile_set = ExtResource("3_bu4tk")
+
+[node name="Fly" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1004, 2030)
+
+[node name="EnemyPillworm" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(971, 1158)
+
+[node name="Base" parent="." instance=ExtResource("6_v6ry1")]
+position = Vector2(1477, 3353)
+dir = 1
+
+[node name="Base2" parent="." instance=ExtResource("6_v6ry1")]
+position = Vector2(1477, 3719)
+dir = 1
+
+[node name="Base3" parent="." instance=ExtResource("6_v6ry1")]
+position = Vector2(428, 4724)
+
+[node name="EnemyPillworm2" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(985, 1603)
+
+[node name="Fly2" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(780, 2700)
+
+[node name="Fly3" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1035, 2928)
+dir = -1
+
+[node name="EnemyPillworm3" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(699, 4097)
+
+[node name="Fly4" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(986, 4467)
+radius = 200.0
+
+[node name="Fly5" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(731, 4938)
+dir = -1
+
+[node name="Fly6" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1176, 5249)
+
+[node name="EnemyPillworm4" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(1117, 5316)
+
+[node name="Base4" parent="." instance=ExtResource("6_v6ry1")]
+position = Vector2(1496, 5495)
+dir = 1
+
+[node name="Fly7" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(725, 5689)
+
+[node name="Fly8" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1059, 6618)
+
+[node name="EnemyPillworm5" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(1017, 6146)
+
+[node name="Fly9" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(702, 6935)
+dir = -1
+
+[node name="Fly10" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1162, 7055)
+radius = 150.0
+
+[node name="EnemyPillworm6" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(1209, 7426)
+
+[node name="EnemyPillworm7" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(969, 7809)
+
+[node name="Fly11" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(621, 7908)
+
+[node name="Base5" parent="." instance=ExtResource("6_v6ry1")]
+position = Vector2(427, 8547)
+
+[node name="Fly12" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1048, 8202)
+
+[node name="Base6" parent="." instance=ExtResource("6_v6ry1")]
+position = Vector2(424, 9001)
+
+[node name="Base8" parent="." instance=ExtResource("6_v6ry1")]
+position = Vector2(1487, 9234)
+dir = 1
+
+[node name="Base9" parent="." instance=ExtResource("6_v6ry1")]
+position = Vector2(493, 10014)
+
+[node name="Fly13" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(814, 10289)
+dir = -1
+
+[node name="Fly14" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1166, 10484)
+
+[node name="EnemyPillworm8" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(821, 10431)
+
+[node name="EnemyPillworm9" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(1038, 10610)
+
+[node name="Fly15" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(928, 6263)
+radius = 150.0
+dir = -1
+
+[node name="EnemyPillworm10" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(959, 11392)
+
+[node name="Fly16" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(531, 10899)
+
+[node name="Fly17" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1421, 11580)
+
+[node name="EnemyPillworm11" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(706, 12343)
+
+[node name="Fly18" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(712, 11751)
+
+[node name="Fly19" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(753, 11865)
+dir = -1
+
+[node name="Fly20" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1286, 12613)
+radius = 80.0
+
+[node name="Fly21" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(667, 12737)
+dir = -1
+
+[node name="Fly22" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1130, 13202)
+
+[node name="Fly23" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(568, 13192)
+
+[node name="Fly24" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(861, 13669)
+radius = 120.0
+
+[node name="Fly25" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1289, 13946)
+dir = -1
+
+[node name="Fly26" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(779, 15135)
+
+[node name="Fly27" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(664, 15116)
+radius = 200.0
+dir = -1
+
+[node name="Fly28" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1198, 15413)
+
+[node name="Fly29" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1195, 15418)
+radius = 150.0
+dir = -1
+
+[node name="Fly30" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(848, 15733)
+
+[node name="Fly31" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(785, 15668)
+radius = 200.0
+dir = -1
+
+[node name="Fly32" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(994, 15395)
+radius = 400.0
+
+[node name="Base10" parent="." instance=ExtResource("6_v6ry1")]
+position = Vector2(431, 13450)
+
+[node name="Base11" parent="." instance=ExtResource("6_v6ry1")]
+position = Vector2(1478, 12614)
+dir = 1
+
+[node name="Fly33" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(686, 16682)
+
+[node name="Base12" parent="." instance=ExtResource("6_v6ry1")]
+position = Vector2(431, 20123)
+
+[node name="Base13" parent="." instance=ExtResource("6_v6ry1")]
+position = Vector2(1483, 20551)
+dir = 1
+
+[node name="Base14" parent="." instance=ExtResource("6_v6ry1")]
+position = Vector2(437, 18355)
+
+[node name="Flower" parent="." instance=ExtResource("7_y6g1l")]
+position = Vector2(425, 21220)
+
+[node name="Flower2" parent="." instance=ExtResource("7_y6g1l")]
+position = Vector2(1573, 21986)
+dir = 1
+
+[node name="Flower3" parent="." instance=ExtResource("7_y6g1l")]
+position = Vector2(438, 22824)
+
+[node name="Flower4" parent="." instance=ExtResource("7_y6g1l")]
+position = Vector2(1491, 23731)
+dir = 1
+
+[node name="EnemyPillworm13" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(635, 26625)
+
+[node name="EnemyPillworm14" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(1093, 26621)
+
+[node name="Flower5" parent="." instance=ExtResource("7_y6g1l")]
+position = Vector2(422, 26776)
+
+[node name="Fly34" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(998, 24666)
+
+[node name="Fly35" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1025, 21759)
+radius = 200.0
+
+[node name="Fly36" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(643, 27855)
+
+[node name="Fly37" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1343, 27847)
+dir = -1
+
+[node name="Flower6" parent="." instance=ExtResource("7_y6g1l")]
+position = Vector2(406, 32508)
+
+[node name="Flower7" parent="." instance=ExtResource("7_y6g1l")]
+position = Vector2(1489, 33380)
+dir = 1
+
+[node name="EnemyPillworm15" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(1113, 33916)
+
+[node name="EnemyPillworm16" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(639, 32961)
+
+[node name="Fly38" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(773, 32128)
+radius = 150.0
+
+[node name="Fly39" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1276, 33201)
+dir = -1
+
+[node name="Fly40" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(797, 34824)
+
+[node name="Fly41" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1201, 36155)
+
+[node name="Fly42" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(740, 37205)
+
+[node name="Fly43" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(991, 38197)
+
+[node name="Fly44" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(869, 38798)
+
+[node name="Fly45" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1172, 39820)
+
+[node name="Fly46" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(982, 42037)
+
+[node name="Fly47" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(976, 42034)
+radius = 150.0
+dir = -1
+
+[node name="EnemyPillworm17" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(656, 40388)
+
+[node name="EnemyPillworm18" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(996, 40382)
+
+[node name="EnemyPillworm19" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(518, 41276)
+
+[node name="EnemyPillworm20" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(1147, 39360)
+
+[node name="EnemyPillworm21" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(578, 39371)
+
+[node name="EnemyPillworm22" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(699, 38479)
+
+[node name="EnemyPillworm23" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(616, 37575)
+
+[node name="EnemyPillworm24" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(1260, 37577)
+
+[node name="EnemyPillworm25" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(590, 36555)
+
+[node name="EnemyPillworm26" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(1158, 36555)
+
+[node name="EnemyPillworm27" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(739, 35141)
+
+[node name="EnemyPillworm28" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(1211, 34369)
+
+[node name="EnemyPillworm29" parent="." instance=ExtResource("4_hnvvp")]
+position = Vector2(620, 34374)
+
+[node name="Potion" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(645, 1404)
+
+[node name="Fly48" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(766, 35637)
+dir = -1
+
+[node name="Fly49" parent="." instance=ExtResource("4_ij31a")]
+position = Vector2(1205, 35261)
+
+[node name="Potion2" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(776, 30100)
+
+[node name="Potion3" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1653, 28690)
+
+[node name="Potion4" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1706, 15382)
+
+[node name="Potion5" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1706, 17804)
+
+[node name="Potion6" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(401, 19468)
+
+[node name="Potion7" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1670, 20819)
+
+[node name="Potion8" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1694, 23270)
+
+[node name="Potion9" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(398, 24891)
+
+[node name="Potion10" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1745, 26286)
+
+[node name="Potion11" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(359, 30369)
+
+[node name="Potion12" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1677, 31746)
+
+[node name="Potion13" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1672, 34170)
+
+[node name="Potion14" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(374, 35805)
+
+[node name="Potion15" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1566, 37176)
+
+[node name="Potion16" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1594, 39589)
+
+[node name="Potion17" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(359, 41230)
+
+[node name="Potion18" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1595, 42624)
+
+[node name="Potion19" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(933, 42593)
+
+[node name="Potion20" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1157, 36810)
+
+[node name="Potion21" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1187, 34889)
+
+[node name="Potion22" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(755, 30932)
+
+[node name="Potion23" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1407, 31214)
+
+[node name="Potion24" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(773, 28750)
+
+[node name="Potion25" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1193, 29512)
+
+[node name="Potion26" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1000, 27943)
+
+[node name="Potion27" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(848, 24288)
+
+[node name="Potion28" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1274, 24587)
+
+[node name="Potion29" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1163, 21980)
+
+[node name="Potion30" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(814, 20123)
+
+[node name="Potion31" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(654, 17298)
+
+[node name="Potion32" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1318, 17177)
+
+[node name="Potion33" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(823, 15906)
+
+[node name="Potion34" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(976, 14954)
+
+[node name="Potion35" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(560, 14291)
+
+[node name="Potion36" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1363, 13491)
+
+[node name="Potion37" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(852, 12965)
+
+[node name="Potion38" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1127, 12079)
+
+[node name="Potion39" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1624, 1474)
+
+[node name="Potion40" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(386, 3118)
+
+[node name="Potion41" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1146, 2270)
+
+[node name="Potion42" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(750, 2757)
+
+[node name="Potion43" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1620, 4503)
+
+[node name="Potion44" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(814, 4352)
+
+[node name="Potion45" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(990, 5544)
+
+[node name="Potion46" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1591, 6924)
+
+[node name="Potion47" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(781, 6351)
+
+[node name="Potion48" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(814, 7634)
+
+[node name="Potion49" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(957, 9269)
+
+[node name="Potion50" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1648, 9930)
+
+[node name="Potion51" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1266, 10825)
+
+[node name="Potion52" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(675, 10760)
+
+[node name="Potion53" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(879, 11867)
+
+[node name="Potion54" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(839, 13812)
+
+[node name="Potion55" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(964, 28000)
+
+[node name="Potion56" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1031, 28019)
+
+[node name="Potion57" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(647, 18674)
+
+[node name="Potion58" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(809, 18508)
+
+[node name="Potion60" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(811, 18852)
+
+[node name="Potion61" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(649, 18996)
+
+[node name="Potion64" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1070, 18502)
+
+[node name="Potion65" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1236, 18667)
+
+[node name="Potion66" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1071, 18849)
+
+[node name="Potion67" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1237, 19005)
+
+[node name="Potion69" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(880, 14954)
+
+[node name="Potion70" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(781, 14955)
+
+[node name="Potion71" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(687, 14954)
+
+[node name="Potion72" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(593, 14952)
+
+[node name="Potion73" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(510, 14951)
+
+[node name="Potion74" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1063, 14955)
+
+[node name="Potion75" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1151, 14955)
+
+[node name="Potion76" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1243, 14955)
+
+[node name="Potion77" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1330, 14951)
+
+[node name="Potion78" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1422, 14949)
+
+[node name="Potion59" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(975, 16745)
+
+[node name="Potion62" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(994, 25755)
+
+[node name="Potion63" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(874, 25675)
+
+[node name="Potion68" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1099, 25678)
+
+[node name="Potion79" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(749, 25601)
+
+[node name="Potion80" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(622, 25648)
+
+[node name="Potion81" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1224, 25616)
+
+[node name="Potion82" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1357, 25656)
+
+[node name="Potion83" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(524, 25809)
+
+[node name="Potion84" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(592, 25971)
+
+[node name="Potion85" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(715, 26103)
+
+[node name="Potion86" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(843, 26209)
+
+[node name="Potion87" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(984, 26274)
+
+[node name="Potion89" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1131, 26204)
+
+[node name="Potion90" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1264, 26098)
+
+[node name="Potion91" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1380, 25977)
+
+[node name="Potion92" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1457, 25814)
+
+[node name="Potion88" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(868, 31251)
+
+[node name="Potion93" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(808, 31376)
+
+[node name="Potion94" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(820, 31539)
+
+[node name="Potion95" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(920, 31659)
+
+[node name="Potion96" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1241, 30265)
+
+[node name="Potion97" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1194, 30400)
+
+[node name="Potion98" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1235, 30537)
+
+[node name="Potion99" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(617, 30636)
+
+[node name="Potion100" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1269, 32696)
+
+[node name="Potion101" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(698, 32163)
+
+[node name="Potion102" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(955, 34239)
+
+[node name="Potion103" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1377, 34236)
+
+[node name="Potion104" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(519, 34870)
+
+[node name="Potion105" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(868, 36260)
+
+[node name="Potion106" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1421, 36254)
+
+[node name="Potion107" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(517, 37245)
+
+[node name="Potion108" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1106, 37247)
+
+[node name="Potion109" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(500, 38195)
+
+[node name="Potion110" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(770, 38202)
+
+[node name="Potion111" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1041, 38204)
+
+[node name="Potion112" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1303, 38211)
+
+[node name="Potion119" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(503, 35505)
+
+[node name="Potion120" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1197, 35494)
+
+[node name="Potion121" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(877, 39456)
+
+[node name="Potion122" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1426, 39460)
+
+[node name="Potion123" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(640, 40243)
+
+[node name="Potion124" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(892, 40252)
+
+[node name="Potion125" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1185, 40269)
+
+[node name="Potion126" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1428, 40266)
+
+[node name="Potion113" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(966, 42275)
+
+[node name="Potion114" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(971, 42114)
+
+[node name="Potion115" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(967, 41957)
+
+[node name="Potion116" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(977, 41786)
+
+[node name="Potion117" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(972, 41615)
+
+[node name="Potion118" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(705, 40793)
+
+[node name="Potion127" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(806, 41003)
+
+[node name="Potion128" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(956, 41236)
+
+[node name="Potion129" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1125, 41000)
+
+[node name="Potion130" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1265, 40772)
+
+[node name="Potion131" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(905, 43440)
+
+[node name="Potion132" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(975, 43358)
+
+[node name="Potion133" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1020, 43442)
+
+[node name="Potion134" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1102, 43382)
+
+[node name="Potion135" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(862, 41684)
+
+[node name="Potion136" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(868, 41873)
+
+[node name="Potion137" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1024, 42590)
+
+[node name="Potion138" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1080, 41684)
+
+[node name="Potion139" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1078, 41875)
+
+[node name="Potion140" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(890, 42064)
+
+[node name="Potion141" parent="." instance=ExtResource("8_dqkq3")]
+position = Vector2(1052, 42064)

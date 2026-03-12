@@ -6,6 +6,7 @@ const UI_PLAY = "uid://dpqc7t7waexaq"
 const UI_WIN = ("uid://cr0nbotihgd41")
 const UI_FAIL = ("uid://btygn1a8iobxj")
 func switch_ui(ui:String):get_tree().call_deferred("change_scene_to_file",ui)
+
 const SFX_BIG_LASER = "uid://c4muf1td5fpja"
 const SFX_SHOTGUN = "uid://d37rs7ktkpwt"
 const SFX = preload("uid://be3bhcwq5e2vi")

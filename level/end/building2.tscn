@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://biy1lugrr7tve"]
+
+[ext_resource type="PackedScene" uid="uid://cwvi4rsy5uvl" path="res://level/end/building.tscn" id="1_o3fxi"]
+
+[node name="Building" type="Node2D" unique_id=1478607728]
+
+[node name="Building" parent="." unique_id=994799984 instance=ExtResource("1_o3fxi")]
+
+[node name="Building2" parent="." unique_id=839751301 instance=ExtResource("1_o3fxi")]
+position = Vector2(0, 5447)

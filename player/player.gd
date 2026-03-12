@@ -12,6 +12,8 @@ var angle:float
 
 var hp:int=10
 var weapon:int=0
+var amount_ammo:float=10
+var amount_ammo_max:float=10
 
 func shoot_ammo():
 	var a=AMMO.instantiate()
